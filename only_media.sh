@@ -22,14 +22,6 @@ unzip 6.0.zip
 cd -
 
 # start template import
-find /tmp/zabbix-release-6.0/templates -type f -name '*.yaml' | \
-while IFS= read -r TEMPLATE
-do {
-php delete_missing.php $SID $JSONRPC $TEMPLATE | jq .result | grep "true"
-# if 'true' not received the print the template name
-[[ $? -ne 0 ]] && echo $TEMPLATE
-} done
-
 find /tmp/zabbix-release-6.0/templates/media -type f -name '*.yaml' | \
 while IFS= read -r MEDIA
 do {
